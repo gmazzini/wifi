@@ -1,0 +1,5 @@
+#!/bin/bash
+
+iptables -t nat -L -v | grep ens192 | while read -r pp; do
+  echo $pp
+done
