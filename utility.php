@@ -20,6 +20,7 @@ function maclogip($ip){
 }
 
 function celllogmac($mac){
+  global $sqluser,$sqlpassword;
   if($mac=="ff:ff:ff:ff:ff:ff")return "";
   $mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
   $result=mysqli_query($mys,"SELECT cell FROM users WHERE valid=1 and mac='$mac'");
