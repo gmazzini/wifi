@@ -1,5 +1,5 @@
 <?php
-
+include "utility.php";
 $cell=$_GET["cell"];
 $sendto=$_GET["sendto"];
 $randval=$_GET["randval"];
