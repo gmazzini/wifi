@@ -15,10 +15,18 @@ if($mac!="ff:ff:ff:ff:ff:ff"){
 ?>
 
 <html>
-<?php echo $mac; print_r($cell); ?>
-<?php if($ii[0]!=10 && $ii[0]!=44){echo "Accesso non consentito da $ipaddr"; exit(); } ?>
 Sistema di identificazione una tantum<br>
 Sperimentazione di LepidaScpA in accordo con il MISE<br>
+<?php 
+  if($ii[0]!=10 && $ii[0]!=44){
+    echo "Accesso non consentito da $ipaddr"; 
+    exit(); 
+  }
+  if($strlen($cell)>7){
+    echo "Bentornato, sei registrato con numero $cell buona navigazione";
+    exit();
+  }
+?>  
 Inserisci qui il tuo numero di cellulare<br>
 (se non italiano in formato internazionale completo +xxxyyyyy)<br>
 <form method="POST" action="identify.php">
