@@ -14,7 +14,6 @@ if($mac!="ff:ff:ff:ff:ff:ff"){
 ?>
 
 <html>
-<pre><?php echo $mac."\n".$ipaddr."\n"; ?></pre>
 Sistema di identificazione una tantum<br>
 Sperimentazione di LepidaScpA in accordo con il MISE<br>
 <?php
