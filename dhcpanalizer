@@ -3,7 +3,8 @@
 tail -F /var/log/dhcpd/dhcpd.log | grep --line-buffered DHCPACK | while read -r pp; do
   tt=`echo $pp | cut -d' ' -f1`
   if (( $EPOCHSECONDS-$tt <= 5 )); then
+    ip=`echo $pp | cut -d' ' -f8`
     mac=`echo $pp | cut -d' ' -f10`
-    echo $tt $mac
+    echo $ip $mac
   fi
 done
