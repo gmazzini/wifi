@@ -2,3 +2,4 @@ cd /var/www/html
 rm -rf wifi
 git clone https://github.com/gmazzini/wifi
 cp wifi/* .
+rm -rf wifi
