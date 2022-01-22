@@ -1,6 +1,7 @@
 <?php
 
 include "utility.php";
+$ipaddr=ipbrowser();
 $ii=explode(".",$ipaddr);
 ?>
 
