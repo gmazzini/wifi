@@ -4,6 +4,9 @@
 iptables -t nat -L -v | grep ens192 | while read -r pp; do
   ip=`echo $pp | cut -d' ' -f8`
   tt=`echo "select max(timestamp) from iptables where ip='$ip'" | mysql -N -u$sqluser -p$sqlpassword wifi`
+  if (( $tt < 10 )); then
+    echo "kkjkjkj"
+  fi
   if (( $EPOCHSECONDS-$tt > 9000 )); then
     echo $ip
   fi
