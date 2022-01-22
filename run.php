@@ -15,9 +15,7 @@ echo "SECONDI RIMASTI PER IDENTIFICARSI $trem";
 $page=file("http://44.134.207.253:8888/gmrecv.php?token=$mytoken&from=$cell");
 $dd=explode("|",end($page));
 if(substr($dd[0],0,6)==$randval && $sendto==trim($dd[1])){
-  $vv=shell_exec("tail -n 1000 /var/log/dhcpd/dhcpd.log | grep DHCPACK | grep $ipaddr | tail -n 1");
-  $xx=explode(" ",$vv);
-  $mac=$xx[9];
+  $mac=maclogip($ipaddr);
   $mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
   mysqli_query($mys,"INSERT INTO users (timestamp,cell,mac,valid) VALUES ($mytime,'$cell','$mac',1)");
   mysqli_close($mys);
