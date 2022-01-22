@@ -1,0 +1,3 @@
+#!/usr/bin/php
+include "utility.php";
+echo celllogmac("10.44.6.27");
