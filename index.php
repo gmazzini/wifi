@@ -2,6 +2,10 @@
 include "utility.php";
 $ipaddr=ipbrowser();
 $ii=explode(".",$ipaddr);
+
+$mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
+$cell=mysqli_query($mys,"SELECT cell FROM users WHERE valid=1 and mac='$mac')");
+mysqli_close($mys);
 ?>
 
 <html>
