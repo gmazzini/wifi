@@ -22,7 +22,7 @@ Sperimentazione di LepidaScpA in accordo con il MISE<br>
     echo "Accesso non consentito da $ipaddr"; 
     exit(); 
   }
-  if($strlen($cell)>7){
+  if(strlen($cell)>7){
     echo "Bentornato, sei registrato con numero $cell buona navigazione";
     exit();
   }
