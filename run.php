@@ -19,7 +19,6 @@ if(substr($dd[0],0,6)==$randval && $sendto==trim($dd[1])){
   $xx=explode(" ",$vv);
   $mac=$xx[9];
   $mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
-  // DA FARE gestione precedente esistenza
   mysqli_query($mys,"INSERT INTO users (timestamp,cell,mac,valid) VALUES ($mytime,'$cell','$mac',1)");
   mysqli_close($mys);
   touch("/wifi/$ipaddr");
