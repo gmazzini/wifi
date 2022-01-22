@@ -4,6 +4,10 @@ tail -F /var/log/dhcpd/dhcpd.log | grep --line-buffered DHCPACK | while read -r 
   tt=`echo $pp | cut -d' ' -f1`
   if (( $EPOCHSECONDS-$tt <= 5 )); then
     ip=`echo $pp | cut -d' ' -f8`
+    
+    natcheck=`iptables -t nat -C POSTROUTING -o ens192 -j MASQUERADE -s $ip`
+    
+    
     mac=`echo $pp | cut -d' ' -f10`
     echo $ip $mac
   fi
