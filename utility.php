@@ -9,15 +9,14 @@ function ipbrowser(){
   else if(getenv("HTTP_FORWARDED"))$ipaddr=getenv("HTTP_FORWARDED");
   else if(getenv("REMOTE_ADDR"))$ipaddr=getenv("REMOTE_ADDR");
   else $ipaddr="0.0.0.0";
-  return "10.44.6.27";
-  return trim($ipaddr);
+  return $ipaddr;
 }
 
 function maclogip($ip){
   $vv=shell_exec("tail -n 1000 /var/log/dhcpd/dhcpd.log | grep DHCPACK | grep $ip | tail -n 1");
   $xx=explode(" ",$vv);
-  if(time()-$xx[0]>7200)return "ff:ff:ff:ff:ff:ff";
-  else return trim($xx[9]);
+  if(time()-$xx[0]>7200)return time()-$xx[0];
+  else return $xx[9];
 }
 
 ?>
