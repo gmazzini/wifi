@@ -5,5 +5,5 @@ iptables -t nat -L -v | grep ens192 | while read -r pp; do
   ip=`echo $pp | cut -d' ' -f8`
   timestamp=`echo "select max(timestamp) from iptables where ip='$ip'" | mysql -N -u$sqluser -p$sqlpassword wifi`
   
-  echo $ip $timestamp
+  echo $ip $timestamp $EPOCHSECONDS-$timestamp
 done
