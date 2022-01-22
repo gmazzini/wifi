@@ -3,6 +3,7 @@ include "utility.php";
 $ipaddr=ipbrowser();
 $ii=explode(".",$ipaddr);
 
+$ipaddr="10.44.6.27";
 $mac=maclogip($ipaddr);
 if($mac!="ff:ff:ff:ff:ff:ff"){
   $mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
