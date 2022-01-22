@@ -8,7 +8,7 @@ tail -F /var/log/dhcpd/dhcpd.log | grep --line-buffered DHCPACK | while read -r 
     if (( $natcheck < 3 )); then
       mac=`echo $pp | cut -d' ' -f10`
       . /var/www/html/myprivate
-      cell=`echo "select cell from users where mac='$mac' and valid=1" | mysql -N -u$sqluser -p$sqlpasswor wifi`
+      cell=`echo "select cell from users where mac='$mac' and valid=1" | mysql -N -u$sqluser -p$sqlpassword wifi`
     
       echo $ip $mac $cell
     fi
