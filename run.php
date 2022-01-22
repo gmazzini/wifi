@@ -8,9 +8,10 @@ $mytime=$_GET["mytime"];
 
 if($cell==""){echo "CELLULARE NON IDENTIFICATO, PUOI CHIUDERE LA PAGINA"; exit(); }
 
+$mac=maclogip($ipaddr);
+$cell=celllogmac($mac);
+if(strlen($cell)>7){echo "UTENTE IDENTIFICATO, PUOI CHIUDERE LA PAGINA"; exit(); }
 
-
-if(file_exists("/wifi/$ipaddr")){echo "UTENTE IDENTIFICATO, PUOI CHIUDERE LA PAGINA"; exit(); }
 $trem=300-(time()-$mytime);
 if($trem<0){echo "TEMPO SCADUTO IDENTIFICAZIONE NON AVVENUTA, PUOI CHIUDERE LA PAGINA"; exit(); }
 echo "SECONDI RIMASTI PER IDENTIFICARSI $trem";
@@ -22,7 +23,6 @@ if(substr($dd[0],0,6)==$randval && $sendto==trim($dd[1])){
   $mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
   mysqli_query($mys,"INSERT INTO users (timestamp,cell,mac,valid) VALUES ($mytime,'$cell','$mac',1)");
   mysqli_close($mys);
-  touch("/wifi/$ipaddr");
 }
 
 ?>
