@@ -1,5 +1,6 @@
 #!/bin/bash
 
 iptables -t nat -L -v | grep ens192 | while read -r pp; do
-  echo $pp
+  ip=`echo $pp | cut -d' ' -f8`
+  echo $ip
 done
