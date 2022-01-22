@@ -3,12 +3,16 @@ include "utility.php";
 $ipaddr=ipbrowser();
 $ii=explode(".",$ipaddr);
 
-$mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
-$cell=mysqli_query($mys,"SELECT cell FROM users WHERE valid=1 and mac='$mac')");
-mysqli_close($mys);
+$mac=maclogip($ipaddr);
+if($mac!="ff:ff:ff:ff:ff:ff"){
+  $mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
+  $cell=mysqli_query($mys,"SELECT cell FROM users WHERE valid=1 and mac='$mac')");
+  mysqli_close($mys);
+}
 ?>
 
 <html>
+<?php echo $mac."   ".$cell; ?>
 <?php if($ii[0]!=10 && $ii[0]!=44){echo "Accesso non consentito da $ipaddr"; exit(); } ?>
 Sistema di identificazione una tantum<br>
 Sperimentazione di LepidaScpA in accordo con il MISE<br>
