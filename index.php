@@ -3,14 +3,7 @@ include "utility.php";
 $ipaddr=ipbrowser();
 $ii=explode(".",$ipaddr);
 $mac=maclogip($ipaddr);
-if($mac!="ff:ff:ff:ff:ff:ff"){
-  $mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
-  $result=mysqli_query($mys,"SELECT cell FROM users WHERE valid=1 and mac='$mac'");
-  $row=mysqli_fetch_row($result);
-  $cell=$row[0];
-  mysqli_free_result($result);
-  mysqli_close($mys);
-}
+$cell=celllogmac($mac);
 ?>
 
 <html>
