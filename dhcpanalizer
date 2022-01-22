@@ -12,7 +12,7 @@ tail -F /var/log/dhcpd/dhcpd.log | grep --line-buffered DHCPACK | while read -r 
       echo $ip $mac $cell
       if (( ${#cell} > 7 )); then
         iptables -t nat -A POSTROUTING -o ens192 -j MASQUERADE -s $ip
-        echo "insert into iptables (timesamp,mac,cell,ip) values ($EPOCHSECONDS,'$mac','$cell','$ip')" | mysql -N -u$sqluser -p$sqlpassword wifi
+        echo "insert into iptables (timestamp,mac,cell,ip) values ($EPOCHSECONDS,'$mac','$cell','$ip')" | mysql -N -u$sqluser -p$sqlpassword wifi
       fi
     fi
   fi
