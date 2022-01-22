@@ -7,7 +7,7 @@ iptables -t nat -L -v | grep ens192 | while read -r pp; do
   if (( $tt < 10 )); then
     echo "kkjkjkj"
   fi
-  if (( $EPOCHSECONDS-$tt > 9000 )); then
+  if (( $tt < 10 && $EPOCHSECONDS-$tt > 9000 )); then
     echo $ip
   fi
 done
