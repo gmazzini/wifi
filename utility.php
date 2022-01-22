@@ -12,4 +12,10 @@ function ipbrowser(){
   return $ipaddr;
 }
 
+function maclogip($ip){
+  $vv=shell_exec("tail -n 1000 /var/log/dhcpd/dhcpd.log | grep DHCPACK | grep $ip | tail -n 1");
+  $xx=explode(" ",$vv);
+  return $xx[9];
+}
+
 ?>
