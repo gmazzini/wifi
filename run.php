@@ -6,10 +6,13 @@ $randval=$_GET["randval"];
 $ipaddr=$_GET["ipaddr"];
 $mytime=$_GET["mytime"];
 
+if($cell==""){echo "CELLULARE NON IDENTIFICATO, PUOI CHIUDERE LA PAGINA"; exit(); }
+
+
+
+if(file_exists("/wifi/$ipaddr")){echo "UTENTE IDENTIFICATO, PUOI CHIUDERE LA PAGINA"; exit(); }
 $trem=300-(time()-$mytime);
-if($cell==""){echo "CELLULARE NON IDENTIFICATO"; exit(); }
-if(file_exists("/wifi/$ipaddr")){echo "UTENTE IDENTIFICATO"; exit(); }
-if($trem<0){echo "TEMPO SCADUTO IDENTIFICAZIONE NON AVVENUTA"; exit(); }
+if($trem<0){echo "TEMPO SCADUTO IDENTIFICAZIONE NON AVVENUTA, PUOI CHIUDERE LA PAGINA"; exit(); }
 echo "SECONDI RIMASTI PER IDENTIFICARSI $trem";
 
 $page=file("http://44.134.207.253:8888/gmrecv.php?token=$mytoken&from=$cell");
