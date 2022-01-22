@@ -1,8 +1,9 @@
 #!/bin/bash
 
-tail -F /var/log/dhcpd/dhcpd.log | grep --line-buffered DHCPACK | while read -r pp; do 
+tail -F /var/log/dhcpd/dhcpd.log | grep --line-buffered DHCPACK | while read -r pp; do
   tt=`echo $pp | cut -d' ' -f1`
-  mac=`echo $pp | cut -d' ' -f10`
-  echo $tt $mac
-
+  if (( $EPOCHSECONDS-$tt >= 5 )); then
+    mac=`echo $pp | cut -d' ' -f10`
+    echo $tt $mac
+  fi
 done
