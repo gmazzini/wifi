@@ -10,7 +10,7 @@ Sistema di identificazione una tantum<br>
 Sperimentazione di LepidaScpA in accordo con il MISE<br>
 Inserisci qui il tuo numero di cellulare<br>
 (se non italiano in formato internazionale completo +xxxyyyyy)<br>
-<form method="POST" action="ff2.php">
+<form method="POST" action="identify.php">
 <pre><input name="cell" type="input"><input type="submit"></pre>
 Nota che il cellulare ti identifica e deve necessariamente<br>
 essere tuo personale<br>
