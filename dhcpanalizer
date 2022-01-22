@@ -1,0 +1,5 @@
+#!/bin/bash
+
+tail -F /var/log/dhcpd/dhcpd.log | grep --line-buffered DHCPACK | while read -r pp; do 
+echo $pp; 
+done
