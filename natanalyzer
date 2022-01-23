@@ -1,19 +1,10 @@
 #!/bin/bash
 
-tail -F /var/log/dhcpd/dhcpd.log | grep --line-buffered DHCPACK | while read -r pp; do
+tail -F /var/log/nat/nat.log | grep --line-buffered "IN=ens224 OUT=ens192" | while read -r pp; do
   tt=`echo $pp | cut -d' ' -f1`
   if (( $EPOCHSECONDS-$tt <= 5 )); then
-    ip=`echo $pp | cut -d' ' -f8`
-    natcheck=`iptables -t nat -C POSTROUTING -o ens192 -j MASQUERADE -s $ip 2>&1 | grep $ip | wc -c`
-    if (( $natcheck < 3 )); then
-      mac=`echo $pp | cut -d' ' -f10`
-      . /var/www/html/myprivate
-      cell=`echo "select cell from users where mac='$mac' and valid=1" | mysql -N -u$sqluser -p$sqlpassword wifi`
-      echo $ip $mac $cell
-      if (( ${#cell} > 7 )); then
-        iptables -t nat -A POSTROUTING -o ens192 -j MASQUERADE -s $ip
-        echo "insert into iptables (timestamp,mac,cell,ip) values ($EPOCHSECONDS,'$mac','$cell','$ip')" | mysql -N -u$sqluser -p$sqlpassword wifi
-      fi
-    fi
+    ipsrc=`echo $pp | cut -d' ' -f10`
+    ipdst=`echo $pp | cut -d' ' -f11`
+    echo "insert into nat (timestamp,ipsrc,ipdst) values ($tt,'$mac','$cell','$ip')" | mysql -N -u$sqluser -p$sqlpassword wifi
   fi
 done
