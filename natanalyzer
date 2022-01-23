@@ -1,10 +1,11 @@
 #!/bin/bash
 
+. /var/www/html/myprivate
 tail -F /var/log/nat/nat.log | grep --line-buffered "IN=ens224 OUT=ens192" | while read -r pp; do
   tt=`echo $pp | cut -d' ' -f1`
   if (( $EPOCHSECONDS-$tt <= 5 )); then
     ipsrc=`echo $pp | cut -d' ' -f10`
     ipdst=`echo $pp | cut -d' ' -f11`
-    echo "insert into nat (timestamp,ipsrc,ipdst) values ($tt,'$mac','$cell','$ip')" | mysql -N -u$sqluser -p$sqlpassword wifi
+    echo "insert into nat (timestamp,ipsrc,ipdst) values ($tt,'${ipsrc:4}','${ipdst:4}')" | mysql -N -u$sqluser -p$sqlpassword wifi
   fi
 done
