@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. /var/www/html/myprivate
 tail -F /var/log/dhcpd/dhcpd.log | grep --line-buffered DHCPACK | while read -r pp; do
   tt=`echo $pp | cut -d' ' -f1`
   if (( $EPOCHSECONDS-$tt <= 5 )); then
@@ -7,7 +8,6 @@ tail -F /var/log/dhcpd/dhcpd.log | grep --line-buffered DHCPACK | while read -r 
     natcheck=`iptables -t nat -C POSTROUTING -o ens192 -j MASQUERADE -s $ip 2>&1 | grep $ip | wc -c`
     if (( $natcheck < 3 )); then
       mac=`echo $pp | cut -d' ' -f10`
-      . /var/www/html/myprivate
       cell=`echo "select cell from users where mac='$mac' and valid=1" | mysql -N -u$sqluser -p$sqlpassword wifi`
       echo $ip $mac $cell
       if (( ${#cell} > 7 )); then
