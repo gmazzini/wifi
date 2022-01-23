@@ -1,2 +1,2 @@
 # wifi
-Simple identification system for wifi navigation
+Simple identification system for WiFi navigation
