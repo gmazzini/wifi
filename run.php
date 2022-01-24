@@ -12,7 +12,8 @@ $mac=maclogip($ipaddr);
 $cell=celllogmac($mac);
 if(strlen($cell)>7){echo "UTENTE IDENTIFICATO, PUOI CHIUDERE LA PAGINA"; exit(); }
 
-$trem=300-(time()-$mytime);
+$actt=time();
+$trem=300-($actt-$mytime);
 if($trem<0){echo "TEMPO SCADUTO IDENTIFICAZIONE NON AVVENUTA, PUOI CHIUDERE LA PAGINA"; exit(); }
 echo "SECONDI RIMASTI PER IDENTIFICARSI $trem";
 
@@ -22,6 +23,8 @@ if(substr($dd[0],0,6)==$randval && $sendto==trim($dd[1])){
   $mac=maclogip($ipaddr);
   $mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
   mysqli_query($mys,"INSERT INTO users (timestamp,cell,mac,valid) VALUES ($mytime,'$cell','$mac',1)");
+  shell_exec("iptables -t nat -A POSTROUTING -o ens192 -j MASQUERADE -s $ipaddr");
+  mysqli_query($mys,"insert into iptables (timestamp,mac,cell,ip) values ($actt,'$mac','$cell','$ipaddr')");
   mysqli_close($mys);
 }
 
