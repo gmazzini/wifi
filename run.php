@@ -6,16 +6,14 @@ $randval=$_GET["randval"];
 $ipaddr=$_GET["ipaddr"];
 $mytime=$_GET["mytime"];
 
-echo "$cell";
-
 if($cell==""){echo "CELLULARE NON IDENTIFICATO, PUOI CHIUDERE LA PAGINA"; exit(); }
 
 $mac=maclogip($ipaddr);
-$cell=celllogmac($mac);
-if(strlen($cell)>7){echo "UTENTE IDENTIFICATO, PUOI CHIUDERE LA PAGINA"; exit(); }
+$authcell=celllogmac($mac);
+if(strlen($authcell)>7){echo "UTENTE IDENTIFICATO, PUOI CHIUDERE LA PAGINA"; exit(); }
 
 $actt=time();
-$trem=300-($actt-$mytime);
+$trem=1000-($actt-$mytime);
 if($trem<0){echo "TEMPO SCADUTO IDENTIFICAZIONE NON AVVENUTA, PUOI CHIUDERE LA PAGINA"; exit(); }
 echo "SECONDI RIMASTI PER IDENTIFICARSI $trem";
 
