@@ -6,6 +6,8 @@ tail -F /var/log/nat/nat.log | grep --line-buffered "IN=ens224 OUT=ens192" | whi
   if (( $EPOCHSECONDS-$tt <= 5 )); then
     ipsrc=`echo $pp | cut -d' ' -f10`
     ipdst=`echo $pp | cut -d' ' -f11`
-    echo "insert into nat (timestamp,ipsrc,ipdst) values ($tt,'${ipsrc:4}','${ipdst:4}')" | mysql -N -u$sqluser -p$sqlpassword wifi
+    if (( $ipdst != "8.8.8.8" )); then
+      echo "insert into nat (timestamp,ipsrc,ipdst) values ($tt,'${ipsrc:4}','${ipdst:4}')" | mysql -N -u$sqluser -p$sqlpassword wifi
+    fi
   fi
 done
