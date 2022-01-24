@@ -1,0 +1,5 @@
+killall -9 dhcpanalyzer
+nohup /var/www/html/dhcpanalyzer &
+killall -9 natanalyzer
+nohup /var/www/html/natanalyzer &
+# */5 * * * * /var/www/html/deleteiptables
