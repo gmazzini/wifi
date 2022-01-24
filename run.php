@@ -24,6 +24,7 @@ if(substr($dd[0],0,6)==$randval && $sendto==trim($dd[1])){
   $mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
   mysqli_query($mys,"INSERT INTO users (timestamp,cell,mac,valid) VALUES ($mytime,'$cell','$mac',1)");
   shell_exec("iptables -t nat -A POSTROUTING -o ens192 -j MASQUERADE -s $ipaddr");
+  echo "iptables -t nat -A POSTROUTING -o ens192 -j MASQUERADE -s $ipaddr";
   mysqli_query($mys,"insert into iptables (timestamp,mac,cell,ip) values ($actt,'$mac','$cell','$ipaddr')");
   mysqli_close($mys);
 }
