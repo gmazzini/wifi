@@ -6,6 +6,8 @@ $randval=$_GET["randval"];
 $ipaddr=$_GET["ipaddr"];
 $mytime=$_GET["mytime"];
 
+echo "$cell";
+
 if($cell==""){echo "CELLULARE NON IDENTIFICATO, PUOI CHIUDERE LA PAGINA"; exit(); }
 
 $mac=maclogip($ipaddr);
