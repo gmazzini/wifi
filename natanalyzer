@@ -6,7 +6,7 @@ tail -F /var/log/nat/nat.log | grep --line-buffered "IN=ens224 OUT=ens192" | whi
   if (( $EPOCHSECONDS-$tt <= 5 )); then
     ipsrc=`echo $pp | cut -d' ' -f10`
     ipdst=`echo $pp | cut -d' ' -f11`
-    if [[ "$ipdst" != "DST=8.8.8.8" ]]; then
+    if [[ "{$ipdst:4}" != "8.8.8.8" &&  "{$ipdst:4}" != "8.8.4.4" ]]; then
       echo "$tt ${ipsrc:4} ${ipdst:4}" >> /var/www/html/nat
     fi
   fi
