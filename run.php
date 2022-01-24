@@ -17,6 +17,7 @@ $trem=300-($actt-$mytime);
 if($trem<0){echo "TEMPO SCADUTO IDENTIFICAZIONE NON AVVENUTA, PUOI CHIUDERE LA PAGINA"; exit(); }
 echo "SECONDI RIMASTI PER IDENTIFICARSI $trem";
 
+echo "http://44.134.207.253:8888/gmrecv.php?token=$mytoken&from=$cell";
 $page=file("http://44.134.207.253:8888/gmrecv.php?token=$mytoken&from=$cell");
 print_r($page);
 $dd=explode("|",end($page));
