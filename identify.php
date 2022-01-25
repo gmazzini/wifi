@@ -29,6 +29,8 @@ var x = setInterval(function() {
 Dal tuo cellulare +<?php echo $cell; ?> devi mandare un SMS<br>
 a questo numero +<?php echo $sendto; ?> contenente solo questo valore
 <?php echo $randval; ?><br>
+Se sei sul tuo cellulare <a href="sms:+<?php echo $sendto; ?>&body=<?php echo $randval; ?>">Clicca qui</a>
+per autocompilarlo<br>
 
 Il sistema partendo da ora e per 5 minuti verifica la ricezione<br>
 del tuo SMS per registrare l'identità fornendo qui il responso<br>
