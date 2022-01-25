@@ -1,11 +1,13 @@
 #!/bin/bash
 
 . /var/www/html/myprivate
-iptables -t nat -L -v | grep ens192 | while read -r pp; do
-  ip=`echo $pp | cut -d' ' -f8`
-  tt=`echo "select max(timestamp) from iptables where ip='$ip'" | mysql -N -u$sqluser -p$sqlpassword wifi`
-  if (( $tt > 0 && $EPOCHSECONDS-$tt > 9000 )); then
-    echo $ip
-    iptables -t nat -D POSTROUTING -o ens192 -j MASQUERADE -s $ip
-  fi
+while true; do
+  iptables -t nat -L -v | grep ens192 | while read -r pp; do
+    ip=`echo $pp | cut -d' ' -f8`
+    tt=`echo "select max(timestamp) from iptables where ip='$ip'" | mysql -N -u$sqluser -p$sqlpassword wifi`
+    if (( $tt > 0 && $EPOCHSECONDS-$tt > 9000 )); then
+      iptables -t nat -D POSTROUTING -o ens192 -j MASQUERADE -s $ip
+    fi
+  done
+  sleep 300
 done
