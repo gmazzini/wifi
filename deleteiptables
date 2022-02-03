@@ -7,7 +7,7 @@ while true; do
     tt=`echo "select max(timestamp) from iptables where ip='$ip'" | mysql -N -u$sqluser -p$sqlpassword wifi`
     if (( $tt > 0 && $EPOCHSECONDS-$tt > 9000 )); then
       iptables -t nat -D POSTROUTING -o ens192 -j MASQUERADE -s $ip
-      iptables -t nat -I PREROUTING 1 -p udp -i ens224 --dport 53 -j ACCEPT -s $ip
+      iptables -t nat -D PREROUTING -p udp -i ens224 --dport 53 -j ACCEPT -s $ip
     fi
   done
   sleep 300
