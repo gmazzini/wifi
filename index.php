@@ -26,6 +26,6 @@ Inserisci qui il tuo numero di cellulare<br>
 Nota che il cellulare ti identifica e deve necessariamente<br>
 essere tuo personale<br>
 Se prosegui stai anche prendendo atto della informativa sul servizio<br>
-e sulla privacy qui riportata xxxx e la stai accettando
+e sulla privacy qui riportata xxxx e la stai accettando<br>
 <img src="logo.png" alt="logo" width="300" height="auto">  
 </html>
