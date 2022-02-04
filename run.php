@@ -20,7 +20,8 @@ echo "SECONDI RIMASTI PER IDENTIFICARSI $trem";
 $page=file("http://44.134.207.253:8888/gmrecv.php?token=$mytoken&from=$cell");
 $dd=explode("|",end($page));
 echo "..".substr($dd[0],0,6)."..";
-echo "..".trim($dd[1])."..";
+echo ".A".trim($dd[1])."A.";
+echo ".B".$cell."B.";
 if(substr($dd[0],0,6)==$randval && $sendto==trim($dd[1])){
   $mac=maclogip($ipaddr);
   $mys=mysqli_connect("localhost",$sqluser,$sqlpassword,"wifi");
