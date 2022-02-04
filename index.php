@@ -16,6 +16,7 @@ Sperimentazione di LepidaScpA in accordo con il MISE<br>
   }
   if(strlen($cell)>7){
     echo "Bentornato, sei registrato con numero $cell buona navigazione";
+    echo "<br><img src=\"logo.png\" alt=\"logo\" width=\"200\" height=\"auto\">";
     exit();
   }
 ?>
