@@ -8,6 +8,7 @@ while true; do
     if (( $tt > 0 && $EPOCHSECONDS-$tt > 9000 )); then
       iptables -t nat -D POSTROUTING -o ens192 -j MASQUERADE -s $ip
       iptables -t nat -D PREROUTING -p udp -i ens224 --dport 53 -j ACCEPT -s $ip
+      iptables -D INPUT -i ens224 -p tcp --dport 443 -j ACCEPT -s $ip
     fi
   done
   sleep 300
