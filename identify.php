@@ -36,5 +36,7 @@ Il sistema partendo da ora e per 5 minuti verifica la ricezione<br>
 del tuo SMS per registrare l'identità fornendo qui il responso<br>
 
 <div style="display:inline" id="myreload"></div>
+<br>
+<img src="logo.png" alt="logo" width="200" height="auto">  
 
 </html>
